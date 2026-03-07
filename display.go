@@ -15,20 +15,29 @@ func displayModules(courseName string, modules []Module) {
 	fmt.Printf("\n%s\n", courseName)
 	fmt.Println("------------------------------")
 
+	maxLen := 0
+	for _, m := range modules {
+		if len(m.Name) > maxLen {
+			maxLen = len(m.Name)
+		}
+	}
+
 	for _, m := range modules {
 		itemWord := "items"
 		if m.ItemsCount == 1 {
 			itemWord = "item"
 		}
+		format := fmt.Sprintf("%%s %%-%ds (%%d %%s)\n", maxLen+2)
+
 		switch m.State {
 		case "completed":
-			green.Printf("[✓] %-40s (%d %s)\n", m.Name, m.ItemsCount, itemWord)
+			green.Printf(format, "[✓]", m.Name, m.ItemsCount, itemWord)
 		case "started":
-			yellow.Printf("[~] %-40s (%d %s)\n", m.Name, m.ItemsCount, itemWord)
+			yellow.Printf(format, "[~]", m.Name, m.ItemsCount, itemWord)
 		case "locked":
-			red.Printf("[🔒] %-40s (%d %s)\n", m.Name, m.ItemsCount, itemWord)
+			red.Printf(format, "[🔒]", m.Name, m.ItemsCount, itemWord)
 		default:
-			white.Printf("[ ] %-40s (%d %s)\n", m.Name, m.ItemsCount, itemWord)
+			white.Printf(format, "[ ]", m.Name, m.ItemsCount, itemWord)
 		}
 	}
 }
