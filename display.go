@@ -6,7 +6,23 @@ import (
 	"github.com/fatih/color"
 )
 
-func displayModules(courseName string, modules []Module) {
+func progressBar(completed, total int) string {
+	if total == 0 {
+		return "[]"
+	}
+	bar := "["
+	for i := 0; i < total; i++ {
+		if i < completed {
+			bar += "█"
+		} else {
+			bar += "-"
+		}
+	}
+	bar += "]"
+	return bar
+}
+
+func displayModules(courseName string, modules []Module, completedCounts map[int]int, trackableCounts map[int]int) {
 	green := color.New(color.FgGreen)
 	yellow := color.New(color.FgYellow)
 	red := color.New(color.FgRed)
@@ -23,21 +39,26 @@ func displayModules(courseName string, modules []Module) {
 	}
 
 	for _, m := range modules {
-		itemWord := "items"
-		if m.ItemsCount == 1 {
-			itemWord = "item"
+		var progress string
+		if completedCounts[m.ID] > 0 || m.State != "completed" {
+			progress = fmt.Sprintf("%s %d/%d", progressBar(completedCounts[m.ID], trackableCounts[m.ID]), completedCounts[m.ID], trackableCounts[m.ID])
 		}
-		format := fmt.Sprintf("%%s %%-%ds (%%d %%s)\n", maxLen+2)
+		format := fmt.Sprintf("%%s %%-%ds %%s\n", maxLen+2)
 
 		switch m.State {
 		case "completed":
-			green.Printf(format, "[✓]", m.Name, m.ItemsCount, itemWord)
+
+			if completedCounts[m.ID] > 0 {
+				green.Printf(format, "[✓]", m.Name, progress)
+			} else {
+				white.Printf(format, "[ ]", m.Name, progress)
+			}
 		case "started":
-			yellow.Printf(format, "[~]", m.Name, m.ItemsCount, itemWord)
+			yellow.Printf(format, "[~]", m.Name, progress)
 		case "locked":
-			red.Printf(format, "[🔒]", m.Name, m.ItemsCount, itemWord)
+			red.Printf(format, "[🔒]", m.Name, progress)
 		default:
-			white.Printf(format, "[ ]", m.Name, m.ItemsCount, itemWord)
+			white.Printf(format, "[ ]", m.Name, progress)
 		}
 	}
 }

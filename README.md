@@ -83,23 +83,24 @@ Enter course number: 4
 
 Sp26 - CS 408 - Full Stack Web Development
 ------------------------------
-[✓] Course Resources                           (2 items)
-[~] Week 1 - Introduction and Overview         (11 items)
-[~] Week 2 - CS208 Database Review             (4 items)
-[~] Week 3 - Tech Stack                        (4 items)
-[~] Week 4 - Form Teams                        (3 items)
-[✓] Week 5 - Developer Setup                   (3 items)
-[~] Week 6 - AWS                               (3 items)
-[ ] Week 7 - Project Specification             (2 items)
-[✓] Week 8                                     (1 item)
+[✓] Course Resources
+[~] Week 1 - Introduction and Overview       [███████----] 7/11
+[~] Week 2 - CS208 Database Review           [█---] 1/4
+[~] Week 3 - Tech Stack                      [█---] 1/4
+[~] Week 4 - Form Teams                      [██-] 2/3
+[✓] Week 5 - Developer Setup
+[~] Week 6 - AWS                             [██-] 2/3
+[ ] Week 7 - Project Specification           [-] 1/2
+[ ] Week 8                                   [--] 0/2
+[ ] Week 16 - Final Project Showcase         [---] 0/3
 ```
 
-Column width adjusts dynamically to the longest module name in the selected course.
+Column width adjusts dynamically to the longest module name in the selected course. Progress bars scale to the number of trackable items in each module — each character represents one item.
 
 **Module status legend:**
-- `[✓]` green — completed
+- `[✓]` green — completed (with a tracked completion timestamp)
 - `[~]` yellow — in progress
-- `[ ]` white — unlocked but not started
+- `[ ]` white — unlocked but not started, or no trackable items
 - `[🔒]` red — locked
 
 ## API Endpoints Used
@@ -108,10 +109,10 @@ Column width adjusts dynamically to the longest module name in the selected cour
 |----------|--------|-------------|
 | `/api/v1/courses` | GET | Retrieves all courses the authenticated user is enrolled in |
 | `/api/v1/courses/:id/modules` | GET | Retrieves all modules and their completion state for a given course |
+| `/api/v1/courses/:id/modules/:id/items` | GET | Retrieves individual items within a module and their completion status |
 
-Both endpoints handle pagination by following the `Link` response header until all pages are retrieved.
+All endpoints handle pagination by following the `Link` response header until all pages are retrieved.
 
 ## Reflection
 
 > To be written upon project completion.
-

@@ -26,6 +26,15 @@ type Module struct {
 	State       string `json:"state"`
 	CompletedAt string `json:"completed_at"`
 	ItemsCount  int    `json:"items_count"`
+	ItemsURL    string `json:"items_url"`
+}
+
+type CompletionRequirement struct {
+	Completed bool `json:"completed"`
+}
+
+type ModuleItem struct {
+	CompletionRequirement *CompletionRequirement `json:"completion_requirement"`
 }
 
 func fetchPage(token, url string, target interface{}) (string, error) {
@@ -98,4 +107,21 @@ func fetchModules(token, baseURL string, courseID int) ([]Module, error) {
 	}
 
 	return allModules, nil
+}
+
+func fetchModuleItems(token, itemsURL string) ([]ModuleItem, error) {
+	var allItems []ModuleItem
+	url := itemsURL
+
+	for url != "" {
+		var page []ModuleItem
+		nextURL, err := fetchPage(token, url, &page)
+		if err != nil {
+			return nil, err
+		}
+		allItems = append(allItems, page...)
+		url = nextURL
+	}
+
+	return allItems, nil
 }

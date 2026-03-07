@@ -55,5 +55,26 @@ func main() {
 		log.Fatal(err)
 	}
 
-	displayModules(selected.Name, modules)
+	completedCounts := make(map[int]int)
+	trackableCounts := make(map[int]int)
+	for _, m := range modules {
+		items, err := fetchModuleItems(token, m.ItemsURL)
+		if err != nil {
+			log.Fatal(err)
+		}
+		count := 0
+		trackable := 0
+		for _, item := range items {
+			if item.CompletionRequirement != nil {
+				trackable++
+				if item.CompletionRequirement.Completed {
+					count++
+				}
+			}
+		}
+		completedCounts[m.ID] = count
+		trackableCounts[m.ID] = trackable
+	}
+
+	displayModules(selected.Name, modules, completedCounts, trackableCounts)
 }
