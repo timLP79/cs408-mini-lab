@@ -85,12 +85,18 @@ Enter course number: 4
 
 Sp26 - CS 408 - Full Stack Web Development
 ------------------------------
-[✓] Course Resources                         (2 items)
-[~] Week 1 - Introduction and Overview       (11 items)
-[~] Week 2 - CS208 Database Review           (4 items)
-[ ] Week 7 - Project Specification           (2 items)
-[✓] Week 8                                   (1 item)
+[✓] Course Resources                           (2 items)
+[~] Week 1 - Introduction and Overview         (11 items)
+[~] Week 2 - CS208 Database Review             (4 items)
+[~] Week 3 - Tech Stack                        (4 items)
+[~] Week 4 - Form Teams                        (3 items)
+[✓] Week 5 - Developer Setup                   (3 items)
+[~] Week 6 - AWS                               (3 items)
+[ ] Week 7 - Project Specification             (2 items)
+[✓] Week 8                                     (1 item)
 ```
+
+Column width adjusts dynamically to the longest module name in the selected course.
 
 **Module status legend:**
 - `[✓]` green — completed
@@ -105,7 +111,7 @@ Sp26 - CS 408 - Full Stack Web Development
 | `/api/v1/courses` | GET | Retrieves all courses the authenticated user is enrolled in |
 | `/api/v1/courses/:id/modules` | GET | Retrieves all modules and their completion state for a given course |
 
-Both endpoints request up to 100 results per page. Full `Link` header pagination is in progress.
+Both endpoints handle pagination by following the `Link` response header until all pages are retrieved.
 
 ## Reflection
 
