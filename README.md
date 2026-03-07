@@ -66,9 +66,14 @@ go run .
 
 Expected output:
 ```
-1: Sp26 - CS 408 - Full Stack Web Development (CS408 4001)
-2: Sp26 - CS 410/510 - Databases (CS410 001)
-3: Sp26 - MATH 301 - Introduction to Linear Algebra (MATH301 001)
+Your Courses:
+-------------------------------
+1: COEN Undergrad Students
+2: Department of Computer Science - Students Groups
+3: Fa24 - CS 153 - Navigating Computer Systems
+4: Sp26 - CS 408 - Full Stack Web Development
+5: Sp26 - CS 410/510 - Databases
+6: Sp26 - MATH 301 - Introduction to Linear Algebra
 
 Enter course number:
 ```
@@ -76,15 +81,22 @@ Enter course number:
 ### View module progress for a course
 
 ```
-Enter course number: 1
+Enter course number: 4
 
 Sp26 - CS 408 - Full Stack Web Development
-─────────────────────────────────────────
-[✓] Week 1 - Introduction         (5/5 items)
-[✓] Week 2 - REST APIs             (4/4 items)
-[~] Week 3 - Authentication        (2/6 items)
-[ ] Week 4 - Databases             (0/5 items)
+------------------------------
+[✓] Course Resources                         (2 items)
+[~] Week 1 - Introduction and Overview       (11 items)
+[~] Week 2 - CS208 Database Review           (4 items)
+[ ] Week 7 - Project Specification           (2 items)
+[✓] Week 8                                   (1 item)
 ```
+
+**Module status legend:**
+- `[✓]` green — completed
+- `[~]` yellow — in progress
+- `[ ]` white — unlocked but not started
+- `[🔒]` red — locked
 
 ## API Endpoints Used
 
@@ -93,7 +105,7 @@ Sp26 - CS 408 - Full Stack Web Development
 | `/api/v1/courses` | GET | Retrieves all courses the authenticated user is enrolled in |
 | `/api/v1/courses/:id/modules` | GET | Retrieves all modules and their completion state for a given course |
 
-Both endpoints use pagination via the `Link` response header.
+Both endpoints request up to 100 results per page. Full `Link` header pagination is in progress.
 
 ## Reflection
 
