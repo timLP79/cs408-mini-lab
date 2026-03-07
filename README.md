@@ -79,20 +79,20 @@ Enter course number:
 ### View module progress for a course
 
 ```
-Enter course number: 4
+Enter course number: 6
 
 Sp26 - CS 408 - Full Stack Web Development
 ------------------------------
-[✓] Course Resources
-[~] Week 1 - Introduction and Overview       [███████----] 7/11
-[~] Week 2 - CS208 Database Review           [█---] 1/4
-[~] Week 3 - Tech Stack                      [█---] 1/4
-[~] Week 4 - Form Teams                      [██-] 2/3
-[✓] Week 5 - Developer Setup
-[~] Week 6 - AWS                             [██-] 2/3
-[ ] Week 7 - Project Specification           [-] 1/2
-[ ] Week 8                                   [--] 0/2
-[ ] Week 16 - Final Project Showcase         [---] 0/3
+[ ] Course Resources
+[~] Week 1 - Introduction and Overview   [████████--] 8/10
+[~] Week 2 - CS208 Database Review       [██--] 2/4
+[✓] Week 3 - Tech Stack                  [██] 2/2
+[✓] Week 4 - Form Teams                  [███] 3/3
+[ ] Week 5 - Developer Setup
+[✓] Week 6 - AWS                         [███] 3/3
+[✓] Week 7 - Project Specification       [█] 1/1
+[ ] Week 8
+[ ] Week 16 - Final Project Showcase     [---] 0/3
 ```
 
 Column width adjusts dynamically to the longest module name in the selected course. Progress bars scale to the number of trackable items in each module, each character represents one item.
