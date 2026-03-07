@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/fatih/color"
 )
@@ -29,7 +30,7 @@ func displayModules(courseName string, modules []Module, completedCounts map[int
 	white := color.New(color.FgWhite)
 
 	fmt.Printf("\n%s\n", courseName)
-	fmt.Println("------------------------------")
+	fmt.Println(strings.Repeat("-", len(courseName)))
 
 	maxLen := 0
 	for _, m := range modules {

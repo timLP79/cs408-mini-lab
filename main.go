@@ -31,7 +31,7 @@ func main() {
 	}
 
 	fmt.Println("\nYour Courses:")
-	fmt.Println("-------------------------------")
+	fmt.Println("-------------")
 	for i, course := range courses {
 		fmt.Printf("%d: %s\n", i+1, course.Name)
 	}
