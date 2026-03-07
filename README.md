@@ -6,8 +6,6 @@ A command-line tool written in Go that connects to the Canvas LMS REST API and d
 
 ![Demo](assets/demo.gif)
 
-> GIF coming soon
-
 ## Setup Instructions
 
 ### Prerequisites
