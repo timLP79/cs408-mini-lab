@@ -50,3 +50,32 @@ func fetchCourses(token, baseURL string) ([]Course, error) {
 	err = json.NewDecoder(resp.Body).Decode(&courses)
 	return courses, err
 }
+
+func fetchModules(token, baseURL string, courseID int) ([]Module, error) {
+	url := fmt.Sprintf("%s/api/v1/courses/%d/modules?per_page=100", baseURL, courseID)
+
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return nil, err
+	}
+	req.Header.Set("Authorization", "Bearer "+token)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("API error: %s", resp.Status)
+	}
+
+	var modules []Module
+	err = json.NewDecoder(resp.Body).Decode(&modules)
+	return modules, err
+}
+
+/*func getNextPage(linkHeader string) string {
+
+}
+*/
