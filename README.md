@@ -46,7 +46,7 @@ CANVAS_BASE_URL=https://boisestatecanvas.instructure.com
 2. Click **Settings**
 3. Scroll to **Approved Integrations** and click **+ New Access Token**
 4. Set a purpose (e.g. "CS408 CLI") and an expiry date, then click **Generate Token**
-5. Copy the token immediately — Canvas will only show it once
+5. Copy the token immediately. Canvas will only show it once
 
 ### 4. Run the tool
 
@@ -95,13 +95,13 @@ Sp26 - CS 408 - Full Stack Web Development
 [ ] Week 16 - Final Project Showcase         [---] 0/3
 ```
 
-Column width adjusts dynamically to the longest module name in the selected course. Progress bars scale to the number of trackable items in each module — each character represents one item.
+Column width adjusts dynamically to the longest module name in the selected course. Progress bars scale to the number of trackable items in each module, each character represents one item.
 
 **Module status legend:**
-- `[✓]` green — completed (with a tracked completion timestamp)
-- `[~]` yellow — in progress
-- `[ ]` white — unlocked but not started, or no trackable items
-- `[🔒]` red — locked
+- `[✓]` green - completed (with a tracked completion timestamp)
+- `[~]` yellow - in progress
+- `[ ]` white - unlocked but not started, or no trackable items
+- `[🔒]` red - locked
 
 ## API Endpoints Used
 
