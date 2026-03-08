@@ -40,6 +40,8 @@ func displayModules(courseName string, modules []Module, completedCounts map[int
 	}
 
 	for _, m := range modules {
+		// Only show a progress bar if there are trackable items, or if the module
+		// isn't marked completed (avoids showing empty bars for non-trackable modules).
 		var progress string
 		if completedCounts[m.ID] > 0 || m.State != "completed" {
 			progress = fmt.Sprintf("%s %d/%d", progressBar(completedCounts[m.ID], trackableCounts[m.ID]), completedCounts[m.ID], trackableCounts[m.ID])

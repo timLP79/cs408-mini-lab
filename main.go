@@ -24,7 +24,6 @@ func main() {
 		log.Fatal("Error: CANVAS_API_TOKEN is not set")
 	}
 
-	// Fetch display courses
 	courses, err := fetchCourses(token, baseURL)
 	if err != nil {
 		log.Fatal(err)
@@ -36,7 +35,6 @@ func main() {
 		fmt.Printf("%d: %s\n", i+1, course.Name)
 	}
 
-	// Get user input
 	fmt.Print("\nEnter course number: ")
 	reader := bufio.NewReader(os.Stdin)
 	input, _ := reader.ReadString('\n')
@@ -49,12 +47,14 @@ func main() {
 
 	selected := courses[choice-1]
 
-	// Fetch modules
 	modules, err := fetchModules(token, baseURL, selected.ID)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Count only items with completion requirements. Some items are informational
+	// and have no trackable requirement, so we track them separately to avoid
+	// skewing the progress bar denominator.
 	completedCounts := make(map[int]int)
 	trackableCounts := make(map[int]int)
 	for _, m := range modules {

@@ -62,6 +62,9 @@ func fetchPage(token, url string, target interface{}) (string, error) {
 	return getNextPage(resp.Header.Get("Link")), nil
 }
 
+// Canvas paginates responses using the Link header per RFC 5988.
+// This function extracts the "next" URL if one exists, or returns ""
+// when the last page has been reached.
 func getNextPage(linkHeader string) string {
 	parts := strings.Split(linkHeader, ",")
 	for _, part := range parts {
