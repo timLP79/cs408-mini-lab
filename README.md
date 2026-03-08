@@ -114,5 +114,13 @@ Column width adjusts dynamically to the longest module name in the selected cour
 All endpoints handle pagination by following the `Link` response header until all pages are retrieved.
 
 ## Reflection
-
-> To be written upon project completion.
+This was a very interesting project for me. In my current role at work, I am an implementation engineer. So it is my job to help companies connect to our API for the services that  
+we provide. This project combined with the semester long project really help give me a better understanding of what other companies are going through and then being able to actually 
+build my own api routes has been a great lesson as well. I used curl several times throughout this process to see what fields were available in the API endpoints and I think I can apply this
+to my projects at work to help customers in a more technical way. This definitely was a fun project and taught me a lot.
+  
+The challenging part of the project was getting the results to display exactly as I wanted them to. Some items in the modules 
+don't actually have items which can be completed and so my counts and results were not quite correct. I had to go back and add a separate counter which 
+counted the items and then one which actually counted items which were actually trackable.
+  
+If I had a bit more time, I would also track the dates of the items to make that part of the logic so that items might be color coded based on if they are current, past, or future items.
