@@ -34,7 +34,14 @@ type CompletionRequirement struct {
 }
 
 type ModuleItem struct {
+	Title                 string                 `json:"title"`
+	Type                  string                 `json:"type"`
+	PageURL               string                 `json:"page_url"`
 	CompletionRequirement *CompletionRequirement `json:"completion_requirement"`
+}
+type Page struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
 }
 
 func fetchPage(token, url string, target interface{}) (string, error) {
@@ -76,6 +83,17 @@ func getNextPage(linkHeader string) string {
 		}
 	}
 	return ""
+}
+
+func fetchPageContent(token, baseURL string, courseID int, pageURL string) (*Page, error) {
+	url := fmt.Sprintf("%s/api/v1/courses/%d/pages/%s", baseURL, courseID, pageURL)
+
+	var page Page
+	_, err := fetchPage(token, url, &page)
+	if err != nil {
+		return nil, err
+	}
+	return &page, nil
 }
 
 func fetchCourses(token, baseURL string) ([]Course, error) {
