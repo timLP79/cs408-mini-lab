@@ -57,6 +57,8 @@ func main() {
 	// skewing the progress bar denominator.
 	completedCounts := make(map[int]int)
 	trackableCounts := make(map[int]int)
+	moduleItems := make(map[int][]ModuleItem)
+
 	for _, m := range modules {
 		items, err := fetchModuleItems(token, m.ItemsURL)
 		if err != nil {
@@ -74,6 +76,7 @@ func main() {
 		}
 		completedCounts[m.ID] = count
 		trackableCounts[m.ID] = trackable
+		moduleItems[m.ID] = items
 	}
 
 	displayModules(selected.Name, modules, completedCounts, trackableCounts)
