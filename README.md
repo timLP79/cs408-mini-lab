@@ -1,6 +1,6 @@
 # Canvas Module Progress CLI
 
-A command-line tool written in Go that connects to the Canvas LMS REST API and displays module completion progress for your courses. Useful for quickly checking which modules you've completed without opening a browser.
+A command-line tool written in Go that connects to the Canvas LMS REST API and displays module completion progress for your courses. Includes full-text search across module item titles and Canvas Page content. Useful for quickly checking which modules you've completed or finding where specific topics are covered without opening a browser.
 
 ## Demo
 
@@ -97,6 +97,22 @@ Sp26 - CS 408 - Full Stack Web Development
 
 Column width adjusts dynamically to the longest module name in the selected course. Progress bars scale to the number of trackable items in each module, each character represents one item.
 
+### Search module content
+
+After viewing module progress, enter a search query to find items by title or page content:
+
+```
+Enter a search query: matrix multiplication
+
+Search results for "matrix multiplication"
+-------------------------------------------
+[Week 7: Matrix Arithmetic and Inverses]   [Week 7 Overview]   (body)
+	...ntroduction
+This week, we will study operations with matrices (addition, scalar/matrix multiplication, and inverse)...
+```
+
+Search checks item titles first. If a title matches, the page body is skipped to avoid duplicate results. For Page items with no title match, the full page body is searched and a snippet of surrounding context is shown.
+
 **Module status legend:**
 - `[✓]` green - completed (with a tracked completion timestamp)
 - `[~]` yellow - in progress
@@ -110,6 +126,7 @@ Column width adjusts dynamically to the longest module name in the selected cour
 | `/api/v1/courses` | GET | Retrieves all courses the authenticated user is enrolled in |
 | `/api/v1/courses/:id/modules` | GET | Retrieves all modules and their completion state for a given course |
 | `/api/v1/courses/:id/modules/:id/items` | GET | Retrieves individual items within a module and their completion status |
+| `/api/v1/courses/:id/pages/:page_url` | GET | Retrieves the full content body of a Canvas Page item for search |
 
 All endpoints handle pagination by following the `Link` response header until all pages are retrieved.
 

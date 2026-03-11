@@ -65,3 +65,21 @@ func displayModules(courseName string, modules []Module, completedCounts map[int
 		}
 	}
 }
+
+func displaySearchResults(results []SearchResult, query string) {
+	header := fmt.Sprintf("Search results for \"%s\"", query)
+	fmt.Printf("\n%s\n", header)
+	fmt.Println(strings.Repeat("-", len(header)))
+
+	if len(results) == 0 {
+		fmt.Println("No results found")
+		return
+	}
+
+	for _, r := range results {
+		fmt.Printf("\n[%s]   [%s]   (%s)\n", r.ModuleName, r.ItemTitle, r.MatchType)
+		if r.Snippet != "" {
+			fmt.Printf("\t%s\n", r.Snippet)
+		}
+	}
+}

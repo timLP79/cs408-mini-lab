@@ -80,4 +80,16 @@ func main() {
 	}
 
 	displayModules(selected.Name, modules, completedCounts, trackableCounts)
+
+	fmt.Print("\nEnter a search query: ")
+	input, _ = reader.ReadString('\n')
+	input = strings.TrimSpace(input)
+
+	if input != "" {
+		results, err := searchModules(token, baseURL, selected.ID, modules, moduleItems, input)
+		if err != nil {
+			log.Fatal(err)
+		}
+		displaySearchResults(results, input)
+	}
 }
