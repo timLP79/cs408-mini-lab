@@ -139,5 +139,7 @@ to my projects at work to help customers in a more technical way. This definitel
 The challenging part of the project was getting the results to display exactly as I wanted them to. Some items in the modules 
 don't actually have items which can be completed and so my counts and results were not quite correct. I had to go back and add a separate counter which 
 counted the items and then one which actually counted items which were actually trackable.
-  
-If I had a bit more time, I would also track the dates of the items to make that part of the logic so that items might be color coded based on if they are current, past, or future items.
+
+If I had more time, I would really polish the search feature. I added this functionality at the last minute. It works to an extent, but is not as robust as I would like. That is the main reason 
+that I did not include this in my GIF. The main functionality is querying the modules and giving a display of progress at a module level. Also, I would also track the dates of the items to make 
+that part of the logic so that items might be color coded based on if they are current, past, or future items.
